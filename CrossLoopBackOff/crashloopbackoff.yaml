@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crashloop-demo
+  labels:
+    app: crashloop-demo
+spec:
+  containers:
+    - name: crash-container
+      image: busybox:latest
+      command:
+        - /bin/sh
+        - -c
+        - |
+          echo "Container started successfully"
+          echo "Simulating application failure..."
+          sleep 5
+          echo "Application is crashing now!"
+          exit 1
+  restartPolicy: Always

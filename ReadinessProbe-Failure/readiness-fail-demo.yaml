@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: readiness-fail-demo
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    readinessProbe:
+      httpGet:
+        path: /wrong-url
+        port: 80
+      initialDelaySeconds: 5
+      periodSeconds: 5
